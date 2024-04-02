@@ -10,7 +10,7 @@ export class ChartRender extends Component {
         this.chartRef = useRef("chart");
 
         onWillStart(async () => {
-            await loadJS('ht_insights/static/src/lib/chart.umd.min.js')
+            await loadJS('insights/static/src/lib/chart.umd.min.js')
         });
 
         onMounted(() => this.renderChart());
