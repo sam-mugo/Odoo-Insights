@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="insights.ChartRender" owl="1">
+        <canvas t-ref="chart"/>
+    </t>
+</template>

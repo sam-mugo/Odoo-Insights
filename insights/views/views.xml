@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <record id="actions_insight" model="ir.actions.client">
+            <field name="name">Insights</field>
+            <field name="tag">insights.actions_insight</field>
+        </record>
+        <menuitem name="Insights" id="menu_insight"
+                  sequence="0"
+                  action="actions_hozma_insight"/>
+    </data>
+</odoo>

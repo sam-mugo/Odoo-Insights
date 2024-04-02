@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="insights.Insight" owl="1">
+        <div class="o_action">
+            <div class="o_content">
+<!--                <h1 class="m-3"> Dashboard </h1>-->
+                <div class="container-fluid bg-white" id="main">
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="card shadow-sm">
+                              <div class="card-body">
+                                <h1 class="card-title text-primary ">Dashboard</h1>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="h3 text-primary border-bottom m-3">
+                                Customer Invoices
+                                </div>
+                                <div class="card-body d-flex flex-row">
+                                    <div class="col">
+                                        <h5 class="card-text">Paid Invoices</h5>
+                                        <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                        <t t-set="amount_total_signed" t-value="0"/>
+                                            <t t-if="state.paidCustomer.length > 0">
+                                            <h5 class="p-4 text-primary"><span class="px-2">$</span><t
+                                                    t-esc="state.paidCustomer[0].amount_total_signed"></t></h5>
+                                        </t>
+                                            <t t-else=""><h5 class="p-4 mt-2 text-primary"><span class="px-2">SR</span>0</h5></t>
+                                        </div>
+
+                                    </div>
+                                    <div class="col border-left">
+                                        <h5 class="card-text">Unpaid Invoices</h5>
+                                        <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                        <t t-set="amount_total_signed" t-value="0"/>
+                                            <t t-if="state.paidCustomer.length > 0">
+                                            <h5 class="p-4 text-primary"><span class="px-2">$</span><t
+                                                    t-esc="state.unpaidCustomer[0].amount_total_signed"/></h5>
+                                        </t>
+                                            <t t-else=""><h5 class="p-4 mt-2 text-primary"><span class="px-2">SR</span>0</h5></t>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="h3 text-primary border-bottom m-3">
+                                Vendor Invoices
+                                </div>
+                                <div class="card-body d-flex flex-row">
+                                    <div class="col">
+                                        <h5 class="card-text">Paid Invoices</h5>
+                                        <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                            <t t-set="amount_total_signed" t-value="0"/>
+                                                <t t-if="state.paidVendor.length > 0">
+                                                <h5 class="p-4 text-primary"><span class="px-0">$</span><t
+                                                        t-esc="state.paidVendor.total"/>0</h5>
+                                            </t>
+                                            <t t-else=""><h5 class="p-4 mt-2 text-primary"><span class="px-0">SR</span>0</h5></t>
+                                        </div>
+
+                                    </div>
+                                    <div class="col border-left">
+                                        <h5 class="card-text">Unpaid Balance</h5>
+                                        <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                        <t t-set="amount_total_signed" t-value="0"/>
+                                            <t t-if="state.unpaidVendor.length > 0">
+                                            <h5 class="p-4 text-primary"><span class="px-0">$</span><t
+                                                    t-esc="state.unpaidVendor.total"/></h5>
+                                        </t>
+                                            <t t-else=""><h5 class="p-4 mt-2 text-primary"><span class="px-2">$</span>0</h5></t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm h-100">
+                              <div class="card-body">
+                                <h5 class="card-title h3 text-primary">Top Selling Products</h5>
+                                  <ChartRender
+                                          type="'polarArea'"
+                                          labels="state.topItems.labels"
+                                          label="'Top Sellers'"
+                                          data="state.topItems.values"
+                                  />
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm h-100">
+                              <div class="card-body">
+                                <h5 class="card-title h3 text-primary">Out of Stock Products</h5>
+                                  <ChartRender
+                                          type="'bar'"
+                                          labels="state.stockItems.labels"
+                                          label="'Out of stock items'"
+                                          data="state.stockItems.values"
+                                          indexAxis="'y'"
+                                  />
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm h-100">
+                              <div class="card-body">
+                                <h5 class="card-title h3 text-primary">Top Customers</h5>
+                                  <ChartRender
+                                          type="'bar'"
+                                          labels="state.topCustomers.labels"
+                                          label="'Top Customers'"
+                                          data="state.topCustomers.values"
+                                          indexAxis="'y'"
+                                  />
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="card shadow-sm h-100">
+                              <div class="card-body">
+                                <h5 class="card-title h3 text-primary">7-day Sales</h5>
+                                  <ChartRender
+                                          type="'bar'"
+                                          labels="state.weekSales.labels"
+                                          label="'Last 7 day sales'"
+                                          data="state.weekSales.values"
+                                          indexAxis="'y'"
+                                  />
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card shadow-sm h-100">
+                              <div class="card-body">
+                                <h5 class="card-title h3 text-primary">30-day Sales</h5>
+                                  <ChartRender
+                                          type="'bar'"
+                                          labels="state.monthSales.labels"
+                                          label="'Last 30 days sales'"
+                                          data="state.monthSales.values"
+                                  />
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <div class="card shadow-sm border bg-white">
+                                <div class="card-body">
+                                    <div class="h3 text-primary">
+                                    Year Sales
+                                    </div>
+                                    <div class="table text-center">
+                                        <ChartRender
+                                                type="'bar'"
+                                                labels="state.yearSales.labels"
+                                                label="'Year Sales'"
+                                                data="state.yearSales.values"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</template>
